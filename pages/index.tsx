@@ -1,13 +1,10 @@
-import { EventList } from "@/components/events";
-import { getFeaturedEvents } from "../dummy-data";
-
-const featuredEvents = getFeaturedEvents();
-
 const HomePage = () => {
     return (
-        <div>
-            <EventList events={featuredEvents}></EventList>
-        </div>
+        <ul>
+            <li>Product 1</li>
+            <li>Product 2</li>
+            <li>Product 3</li>
+        </ul>
     );
 };
 
