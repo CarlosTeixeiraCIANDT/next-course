@@ -3,16 +3,20 @@ import {
     EventLogistics,
     EventSummary,
 } from "@/components/events";
-import { getEventById } from "@/dummy-data";
+import {
+    getAllEvents,
+    getEventById,
+    getFeaturedEvents,
+} from "@/helpers/api-util";
 import { useRouter } from "next/router";
 
-const EventPage = () => {
-    const router = useRouter();
-
-    const event = getEventById(router.query.eventId);
-
+const EventPage: React.FC<{ event: any }> = ({ event }) => {
     if (!event) {
-        return <p> No event found</p>;
+        return (
+            <div className="center">
+                <p> No event found</p>
+            </div>
+        );
     }
 
     return (
@@ -27,3 +31,20 @@ const EventPage = () => {
 };
 
 export default EventPage;
+
+export async function getStaticProps(context: any) {
+    const eventId = context.params.eventId;
+
+    const event = await getEventById(eventId);
+
+    return { props: { event }, revalidate: 30 };
+}
+
+export async function getStaticPaths() {
+    const events = await getFeaturedEvents();
+
+    const paths = events.map((event: any) => ({
+        params: { eventId: event.id },
+    }));
+    return { paths: paths, fallback: true };
+}
