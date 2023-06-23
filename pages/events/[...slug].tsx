@@ -1,5 +1,6 @@
 import { EventList } from "@/components/events";
 import { getFilteredEvents } from "@/helpers/api-util";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 const FilteredEventsPage: React.FC<{ events: any }> = ({ events }) => {
@@ -11,6 +12,13 @@ const FilteredEventsPage: React.FC<{ events: any }> = ({ events }) => {
 
     return (
         <div>
+            <Head>
+                <title>Filtered Events</title>
+                <meta
+                    name="description"
+                    content={`Filtered events: ${events}`}
+                />
+            </Head>
             <EventList events={events} />
         </div>
     );

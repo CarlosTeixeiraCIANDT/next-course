@@ -2,6 +2,7 @@ import { LogisticsItem } from "./logistics-item";
 
 import styles from "./event-logistics.module.css";
 import { AddressIcon, DateIcon } from "@/components/icons";
+import Image from "next/image";
 
 const EventLogistics: React.FC<{ event: any }> = ({ event }) => {
     const { date, location, image, title } = event;
@@ -16,7 +17,7 @@ const EventLogistics: React.FC<{ event: any }> = ({ event }) => {
     return (
         <section className={styles.logistics}>
             <div className={styles.image}>
-                <img src={`/${image}`} alt={title} />
+                <Image src={`/${image}`} alt={title} height={400} width={400} />
             </div>
             <ul className={styles.list}>
                 <LogisticsItem icon={DateIcon}>

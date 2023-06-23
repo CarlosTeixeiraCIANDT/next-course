@@ -8,19 +8,34 @@ import {
     getEventById,
     getFeaturedEvents,
 } from "@/helpers/api-util";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 const EventPage: React.FC<{ event: any }> = ({ event }) => {
+    const pageHead = (
+        <Head>
+            <title>{event.title || "No Event Found"}</title>
+            <meta
+                name="description"
+                content={event.description || "No Event found"}
+            />
+        </Head>
+    );
+
     if (!event) {
         return (
-            <div className="center">
-                <p> No event found</p>
-            </div>
+            <>
+                {pageHead}
+                <div className="center">
+                    <p> No event found</p>
+                </div>
+            </>
         );
     }
 
     return (
         <>
+            {pageHead}
             <EventSummary title={event.title} />
             <EventLogistics event={event} />
             <EventContent>

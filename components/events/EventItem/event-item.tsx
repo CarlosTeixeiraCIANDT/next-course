@@ -2,6 +2,7 @@ import { Button } from "@/components/UI";
 
 import styles from "./event-item.module.css";
 import { DateIcon, ArrowRight, AddressIcon } from "@/components/icons";
+import Image from "next/image";
 
 const EventItem: React.FC<{ event: any }> = ({ event }) => {
     const { title, image, date, location, id } = event;
@@ -16,7 +17,7 @@ const EventItem: React.FC<{ event: any }> = ({ event }) => {
 
     return (
         <li className={styles.item}>
-            <img src={"/" + image} alt={title} />
+            <Image src={"/" + image} alt={title} width={250} height={160} />
             <div className={styles.content}>
                 <div className={styles.summary}>
                     <h2>{title}</h2>
